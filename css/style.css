@@ -1,23 +1,26 @@
-/* ------------ youtube.com/CodeExplained ------------ */
+
+
 body{
     padding: 0;
     margin: 0;
     background-color: rgba(0,0,0,0.1);
     font-family: 'Titillium Web', sans-serif;
+    background: lightgray;
+    
 }
 
 /* ------------ container ------------ */
 .container{
     padding:10px;
-    width:380px;
-    margin:0 auto;
+    width: 23.75em;
+    margin:0 auto;   
 }
 
 /* ------------ header ------------ */
 .header{
     width: 380px;
     height:200px;
-    background-image: url('../img/bg2.jpg');
+    background-image: url('../img/picture.jpg');
     background-size: 100% 200%;
     background-repeat: no-repeat;
     border-radius: 15px 15px 0 0;
@@ -25,10 +28,10 @@ body{
 }
 .clear{
     width : 30px;
-    height: 30px;
+    /* height: 50px; */
     position: absolute;
     right:20px;
-    top: 20px;
+    top: 20px; 
 }
 .clear i{
     font-size: 30px;
@@ -48,29 +51,33 @@ body{
     font-family: 'Titillium Web', sans-serif;
 }
 
+#time{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #FFF;
+    font-size: 25px;
+    font-family: 'Titillium Web', sans-serif;
+}
 /* ------------ content ------------ */
 .content{
-    width:380px;
+    width: 100%;
     height: 350px;
-    max-height:350px;
-    background-color: #FFF;
+     background-color: #FFF;
     overflow: auto;
-}
-.content::-webkit-scrollbar { 
-    display: none; 
 }
 .content ul{
     padding:0;
     margin:0;
 }
 .item{
-    width:380px;
+    width: 100%;
     height: 45px;
     min-height: 45px;
     position: relative;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     list-style: none;
-    padding: 0;
+    padding: 0px;
     margin: 0;
 }
 .item i.co{
@@ -87,14 +94,15 @@ body{
     color:#6eb200;
 }
 .item p.text{
-    position: absolute;
+    position: relative;
     padding:0;
     margin:0;
     font-size: 20px;
     left:50px;
     top:5px;
     background-color: #FFF;
-    max-width:285px;
+    width: 50%;
+   
 }
 .lineThrough{
     text-decoration: line-through;
@@ -131,29 +139,20 @@ body{
     height: 35px;
     width: 310px;
     background-color: transparent;
-    border: none;
+    border: 0.5px solid lightgray ;
     font-size: 20px;
     padding-left:10px;
+    
+    
 }
-.add-to-do input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: #4162f6;
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 20px;
+
+input{
+    border-radius: 5px; 
 }
-.add-to-do input::-moz-placeholder { /* Firefox 19+ */
-    color: #4162f6;
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 20px;
-}
-.add-to-do input:-ms-input-placeholder { /* IE 10+ */
-    color: #4162f6;
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 20px;
-}
-.add-to-do input:-moz-placeholder { /* Firefox 18- */
-    color: #4162f6;
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 20px;
+
+input:focus{
+    outline: .7px solid rgba(0,0,0.6,0.8);
+    
 }
 
 
