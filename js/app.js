@@ -159,4 +159,4 @@ if(data){
 
 
 //add item to localStorage
-localStorage.setItem('TODO', JSON.stringify(LIST));
+
