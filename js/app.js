@@ -1,7 +1,7 @@
 //Selecting the Elements
 
 const clear = document.querySelector('.clear'); //Select the clear icon
-const date = document.getElementById('date'); //select the date firld
+const date = document.getElementById('date'); //select the date field
 const list = document.getElementById('list'); //select the field where the to do items would display
 const input = document.getElementById('input'); //The Add to do input
 const time = document.getElementById('time'); //dsiplay the time
@@ -11,10 +11,10 @@ const CHECK = "fa-check-circle";  //the check variable would  be used to add fa-
 const UNCHECK = 'fa-circle-thin'; //the uncheck variable would be used to add fa-circle-thin
 const LINETHROUGH = "lineThrough"; //the LINETHROUGH would be used to add the linethrough CSS class
 
-//variables for dynamically deleting and updating content
+//variables for deleting and updating content
 
 let LIST = [];  //create an empty array where the users task would be stored 
-let id = 0; //the id is the current number of tasks in the LIST. It's initialized to 0
+let id = 0; //the id is the current id of tasks in the LIST. It's initialized to 0
 
 //Working with Date and Time
 
@@ -29,16 +29,24 @@ options = {
     hour: 'numeric',
     time: 'numeric'
 }
+
+
 //Add task function
 
 let addToDo = (toDo, id, done, bin) => {
  
+    //bin means tasks that has been deleted. 
     if(bin){
         return
     }
+
+//Here in line 44, i'm saying if a task has been marked as done, add the...????????? 
     const DONE = done ? CHECK : UNCHECK;
-    const LINE = done ? LINETHROUGH : "";
+    console.log(DONE)
+    const LINE = done ? LINETHROUGH : ""; //wahala fit dey here oo
+    console.log(LINE)
     const position = 'beforeend';
+    
 
     const item = `
     <li class="item">
@@ -50,17 +58,21 @@ let addToDo = (toDo, id, done, bin) => {
    
     list.insertAdjacentHTML(position, item);
 }
+
+
 //add item when user hits the enter key
+
+
 document.addEventListener('keyup', (event) => {
     if (event.keyCode === 13) {
-        const toDo = input.value;
+        const task = input.value;
 
         //if the input is not empty
-        if(toDo){
-            addToDo(toDo, id, false, false );
+        if(task){
+            addToDo(task, id, false, false );
 
             LIST.push({
-                name: toDo,
+                name: task,
                 id: id,
                 done: false,
                 bin: false
@@ -94,13 +106,21 @@ removeToDo = (element) => {
 
 list.addEventListener('click', (event) => {
     const element = event.target //return the clicked element
-    const elementJob = element.attributes.job.value;
+    const elementJob = element.attributes.job.value; //AHA! this logs 'complete' if a task has been marked but when i unmarked it, 
+    //it still keeps on logging complete
+    
+    console.log(elementJob);
 
     if(elementJob === 'complete'){
         completeToDo(element);
     } else if (elementJob === 'delete' ){
         removeToDo(element);
+    }else{
+        return 
     }
+
+
+
     localStorage.setItem('TODO', JSON.stringify(LIST));
 });
 
@@ -108,15 +128,16 @@ list.addEventListener('click', (event) => {
 
 //get item from localStorage
 let data = localStorage.getItem('TODO');
+console.log(data); 
 
 //check
 
 const loadList = (array) => {
     array.forEach((item)=> {
-        addToDo(item.name, item.id, item.done, item.trash );
+        addToDo(item.name, item.id, item.done, item.bin );
     })
 }
-
+console.log(loadList);
 
 clear.addEventListener('click', ()=>{
     localStorage.clear();
@@ -126,11 +147,13 @@ clear.addEventListener('click', ()=>{
 
 if(data){
     LIST = JSON.parse(data);
+    console.log(LIST)
     id = LIST.length;
+    console.log(id);
     loadList(LIST);
 }else {
     LIST = [];
-    id = 0
+    id = 1;
 }
 
 
